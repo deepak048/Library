@@ -1,0 +1,28 @@
+package com.library.ServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.library.Dao.UserDao;
+import com.library.Entity.User;
+import com.library.Service.UserService;
+import com.library.Utility.UserResponse;
+
+@Service
+public class UserServiceImpl implements UserService{
+
+	@Autowired
+	UserDao userDao;
+	
+	@Override
+	public UserResponse saveUser(User user) throws Exception {
+		return userDao.saveUser(user);
+	}
+
+	@Override
+	public User loginUser(String userName, String password) {
+		// TODO Auto-generated method stub
+		return userDao.loginUser(userName,password);
+	}
+
+}
