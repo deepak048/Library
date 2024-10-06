@@ -26,16 +26,16 @@ public class JwtUtil {
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
-        // Convert the secret key to a proper Key object
+       
         byte[] keyBytes = Base64.getEncoder().encode(SECRET_KEY.getBytes());
         Key key = new SecretKeySpec(keyBytes, SignatureAlgorithm.HS256.getJcaName());
 
-        // Build and sign the token
+    
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))  // Token valid for 10 hours
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) 
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
     }

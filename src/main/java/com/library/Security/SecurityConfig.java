@@ -33,7 +33,7 @@ public class SecurityConfig {
          .and()
          .csrf().disable() 
             .authorizeHttpRequests((authz) -> authz
-                .requestMatchers("/api/login", "/api/register","/api/library/books","api/library/borrowBooks","/api/logout").permitAll()
+                .requestMatchers("/api/*").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -56,12 +56,12 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true); // Allow credentials (cookies, etc.)
-        config.addAllowedOriginPattern("*"); // Allow all origins for development
-        config.addAllowedHeader("*"); // Allow all headers
-        config.addAllowedMethod("*"); // Allow all methods (GET, POST, PUT, DELETE, etc.)
-        config.setMaxAge(3600L); // Cache preflight response for an hour
-        source.registerCorsConfiguration("/**", config); // Apply this configuration to all endpoints
+        config.setAllowCredentials(true); 
+        config.addAllowedOriginPattern("*"); 
+        config.addAllowedHeader("*"); 
+        config.addAllowedMethod("*");
+        config.setMaxAge(3600L); 
+        source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
 }
