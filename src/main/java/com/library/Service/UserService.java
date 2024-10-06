@@ -9,4 +9,8 @@ public interface UserService {
 
 	User loginUser(String userName, String password);
 
+	boolean isTokenBlacklisted(String jwt);
+
+	void blacklistToken(String token);
+
 }

@@ -1,10 +1,14 @@
 package com.library.Entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -28,6 +32,8 @@ public class User {
 
 	private String email;
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BorrowedBooks> books;
 	
 	
 	
@@ -78,6 +84,15 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<BorrowedBooks> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<BorrowedBooks> books) {
+		this.books = books;
+	}
+	
 	
 	
 	
